@@ -1,4 +1,6 @@
-import FormCoworking from "../components/formCoworking";
+import FormCoworking from "../components/forms/formCoworking";
+
+
 
 function Coworking() {
     return(
