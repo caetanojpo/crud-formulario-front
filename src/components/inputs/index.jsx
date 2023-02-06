@@ -1,4 +1,4 @@
-import { FormControl, FormErrorMessage, FormHelperText, FormLabel, Input } from "@chakra-ui/react";
+import { FormControl, FormErrorMessage, FormLabel, Input } from "@chakra-ui/react";
 import { useState } from 'react';
 
 
@@ -12,7 +12,7 @@ function Inputs(props) {
         <>
             <FormControl display='flex' flexDir='column' isRequired={props.requerido ? true : false} isInvalid={isError} gap='5px'>
                 <FormLabel>{props.label}</FormLabel>
-                <Input h='30px' w={props.largura} type={props.tipo} placeholder={props.placeholder} value={input} onChange={handleInputChange} />
+                <Input outline='1px solid white !important' border='1px solid white !important' color='white' h='30px' w={props.largura} type={props.tipo} placeholder={props.placeholder} value={input} onChange={handleInputChange} />
                 {!isError ? (
                   ''
                 ) : (
