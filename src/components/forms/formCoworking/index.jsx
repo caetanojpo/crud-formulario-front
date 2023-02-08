@@ -1,8 +1,9 @@
 import Form from '../../formulario';
 import Inputs from '../../inputs';
 import RadioOptions from '../../radiobox';
+import SelectOptions from '../../select';
 
-export default function FormCoworking() {
+export default function FormCoworking(props) {
   return (
     <Form
       titulo="Formulário Coworking"
@@ -39,20 +40,21 @@ export default function FormCoworking() {
         </>
       }
       labelRadio="Selecione o plano desejado: "
-      radio
-      radiobox={
+      select
+      selectbox={
         <>
-          <RadioOptions text="Coworking - Diário - 4 horas" value="1" />
-          <RadioOptions text="Coworking - Diário - 8 horas" value="2" />
-          <RadioOptions text="Coworking - Mensal - 4 horas" value="3" />
-          <RadioOptions text="Coworking - Mensal - 8 horas" value="4" />
-          <RadioOptions text="Sala de Reunião - 4 horas" value="5" />
-          <RadioOptions text="Sala de Reunião - 8 horas" value="6" />
-          <RadioOptions text="Sala de Podcast - 2 horas" value="7" />
-          <RadioOptions text="Sala de Podcast - 4 horas" value="8" />
-          <RadioOptions text="Sala de Podcast - 6 horas" value="9" />
+          <SelectOptions opcao="Coworking - Diário - 4 horas" value="1" />
+          <SelectOptions opcao="Coworking - Diário - 8 horas" value="2" />
+          <SelectOptions opcao="Coworking - Mensal - 4 horas" value="3" />
+          <SelectOptions opcao="Coworking - Mensal - 8 horas" value="4" />
+          <SelectOptions opcao="Sala de Reunião - 4 horas" value="5" />
+          <SelectOptions opcao="Sala de Reunião - 8 horas" value="6" />
+          <SelectOptions opcao="Sala de Podcast - 2 horas" value="7" />
+          <SelectOptions opcao="Sala de Podcast - 4 horas" value="8" />
+          <SelectOptions opcao="Sala de Podcast - 6 horas" value="9" />
         </>
       }
+      alterar={props.podeAlterar ? true : false}
       textareaLabel="Observações:"
       textareaPlaceholder="Digite as observações referente a locação..."
     />

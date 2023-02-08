@@ -23,9 +23,9 @@ export default function Inputs(props) {
       >
         <FormLabel>{props.label}</FormLabel>
         <Input
-          outline="1px solid white !important"
-          border="1px solid white !important"
-          color="white"
+          outline="1px solid black !important"
+          border="1px solid black !important"
+          color="black"
           h="30px"
           w={props.largura}
           type={props.tipo}

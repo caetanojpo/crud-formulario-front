@@ -1,3 +1,5 @@
+import FormCoworking from '../../../components/forms/formCoworking';
+
 export default function CoworkingUpdate() {
-  return <div>oi</div>;
+  return <FormCoworking podeAlterar />;
 }

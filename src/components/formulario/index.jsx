@@ -7,11 +7,13 @@ import {
   FormLabel,
   Heading,
   RadioGroup,
+  Select,
   Stack,
   Text,
   Textarea,
 } from '@chakra-ui/react';
 import { useState } from 'react';
+import ButtonForm from '../button';
 
 export default function Form(props) {
   const [value, setValue] = useState('1');
@@ -25,12 +27,12 @@ export default function Form(props) {
           flexDir="column"
           w="500px"
           h="100%"
-          bg="#003b33"
+          bg="white"
           justifyContent="space-around"
-          color="white"
+          color="black"
           borderRadius="8px"
-          boxShadow="6px 6px 15px #c0cad4,
-             -6px -6px 15px #f4ffff;"
+          borderColor="black"
+          margin="50px 0px"
         >
           <Box textAlign="center" padding="32px">
             <Heading fontSize="32px" fontFamily="gotham" fontWeight="600">
@@ -56,6 +58,11 @@ export default function Form(props) {
                 flexDir="column"
                 as="fieldset"
               >
+                {props.select ? (
+                  <Select placeholder="Select option">{props.selectbox}</Select>
+                ) : (
+                  ''
+                )}
                 {props.radio ? (
                   <>
                     <FormLabel mb="10px" as="legend">
@@ -106,20 +113,9 @@ export default function Form(props) {
                 <Text fontWeight="600">{props.textareaLabel}</Text>
                 <Textarea placeholder={props.textareaPlaceholder} />
               </Flex>
-              <Flex w="100%" justifyContent="center">
-                <Button
-                  cursor="pointer"
-                  type="submit"
-                  variantColor="teal"
-                  variant="outline"
-                  width="200px"
-                  border="1px solid white"
-                  borderRadius="8px"
-                  padding="10px 0px"
-                  mt={4}
-                >
-                  Confirmar
-                </Button>
+              <Flex w="100%" justifyContent="center" gap="10px">
+                <ButtonForm text="Confirmar" />
+                {props.alterar ? <ButtonForm text="Editar" /> : ''}
               </Flex>
             </form>
           </Box>
