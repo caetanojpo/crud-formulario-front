@@ -4,6 +4,7 @@ import {
   FormLabel,
   Input,
 } from '@chakra-ui/react';
+import { isDisabled } from '@chakra-ui/utils';
 import { useState } from 'react';
 
 export default function Inputs(props) {
@@ -20,6 +21,7 @@ export default function Inputs(props) {
         isRequired={props.requerido ? true : false}
         isInvalid={isError}
         gap="5px"
+        isDisabled={props.desabilitar ? true : false}
       >
         <FormLabel>{props.label}</FormLabel>
         <Input

@@ -12,12 +12,24 @@ import {
   Text,
   Textarea,
 } from '@chakra-ui/react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import ButtonForm from '../button';
 
 export default function Form(props) {
   const [value, setValue] = useState('1');
 
+  const [habilitado, setHabilitado] = useState(true);
+
+  const alteraHabilitado = (e) => {
+    e.preventDefault();
+    setHabilitado((current) => !current);
+  };
+
+  useEffect(() => {}, [habilitado]);
+
+  const teste = (e) => {
+    e.preventDefault();
+  };
   return (
     <>
       <Flex width="full" align="center" justifyContent="center">
@@ -57,6 +69,7 @@ export default function Form(props) {
                 display="flex"
                 flexDir="column"
                 as="fieldset"
+                isDisabled={props.desabilitar ? habilitado : false}
               >
                 {props.select ? (
                   <Select placeholder="Select option">{props.selectbox}</Select>
@@ -114,8 +127,12 @@ export default function Form(props) {
                 <Textarea placeholder={props.textareaPlaceholder} />
               </Flex>
               <Flex w="100%" justifyContent="center" gap="10px">
-                <ButtonForm text="Confirmar" />
-                {props.alterar ? <ButtonForm text="Editar" /> : ''}
+                <ButtonForm text="Confirmar" funcao={teste} />
+                {props.alterar ? (
+                  <ButtonForm text="Editar" funcao={alteraHabilitado} />
+                ) : (
+                  ''
+                )}
               </Flex>
             </form>
           </Box>

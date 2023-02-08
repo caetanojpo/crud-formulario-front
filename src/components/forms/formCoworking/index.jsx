@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import Form from '../../formulario';
 import Inputs from '../../inputs';
 import RadioOptions from '../../radiobox';
@@ -16,6 +17,7 @@ export default function FormCoworking(props) {
             errorMessage="O nome ainda não foi digitado"
             largura="100%"
             requerido
+            desabilitar={props.desabilitar ? true : false}
           />
           <Inputs
             label="Digite o telefone de quem está alugando:"
@@ -24,18 +26,21 @@ export default function FormCoworking(props) {
             placeholder="(XX)XXXX-XXXX"
             errorMessage="O telefone ainda não foi digitado"
             requerido
+            desabilitar={props.desabilitar ? true : false}
           />
           <Inputs
             label="Digite o nome da organização:"
             tipo="text"
             largura="100%"
             placeholder="Empresa LTDA ME"
+            desabilitar={props.desabilitar ? true : false}
           />
           <Inputs
             label="Informe a data e horário da locação:"
             largura="40%"
             tipo="datetime-local"
             requerido
+            desabilitar={props.desabilitar ? true : false}
           />
         </>
       }
@@ -54,9 +59,10 @@ export default function FormCoworking(props) {
           <SelectOptions opcao="Sala de Podcast - 6 horas" value="9" />
         </>
       }
-      alterar={props.podeAlterar ? true : false}
+      alterar={props.podeAlterar ? [true, false] : [false]}
       textareaLabel="Observações:"
       textareaPlaceholder="Digite as observações referente a locação..."
+      desabilitar={props.desabilitar ? true : false}
     />
   );
 }

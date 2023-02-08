@@ -1,5 +1,5 @@
 import FormCoworking from '../../../components/forms/formCoworking';
 
 export default function CoworkingUpdate() {
-  return <FormCoworking podeAlterar />;
+  return <FormCoworking podeAlterar desabilitar />;
 }
