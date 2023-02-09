@@ -1,24 +1,25 @@
 import Form from '../../formulario';
-import Inputs from '../../inputs';
 
-export default function FormPlanos() {
+export default function FormPlanos(props) {
+  const inputData = [
+    {
+      requerido: true,
+      label1: 'Digite a descrição do plano:',
+      label2: 'Descrição do plano',
+      largura: '100%',
+      tipo: 'text',
+      placeholder: 'Espaço - Diário/Mensal - Duração',
+    },
+  ];
   return (
     <Form
       titulo="Formulário Planos"
-      input={
-        <>
-          <Inputs
-            label="Digite a descrição do plano:"
-            tipo="text"
-            placeholder="Espaço - Diário/Mensal - Duração"
-            errorMessage="Aguardando a digitação"
-            largura="100%"
-            requerido
-          />
-        </>
-      }
+      inputData={inputData}
       textareaLabel="Observações:"
       textareaPlaceholder="Digite aqui as observações do plano..."
+      alterar={props.podeAlterar ? true : false}
+      desabilitar={props.desabilitar ? true : false}
+      confirmaAlteracao={props.confirmaAlteracao}
     />
   );
 }

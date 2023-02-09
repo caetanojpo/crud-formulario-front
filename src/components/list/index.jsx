@@ -73,7 +73,7 @@ export default function ListForms(props) {
             </Thead>
             <Tbody>
               {props.tableRows.map((item) => {
-                return <TrForms body={item} view="/coworking/atualizar" />;
+                return <TrForms body={item} view={props.view} />;
               })}
             </Tbody>
           </Table>

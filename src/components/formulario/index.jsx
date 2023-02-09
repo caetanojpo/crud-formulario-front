@@ -14,12 +14,14 @@ import {
   FormLabel,
   Heading,
   Input,
+  Radio,
   RadioGroup,
   Select,
   Stack,
   Text,
   Textarea,
   useDisclosure,
+  Checkbox,
 } from '@chakra-ui/react';
 import './style.css';
 import { useEffect, useRef, useState } from 'react';
@@ -55,7 +57,7 @@ export default function Form(props) {
           flexDir="column"
           w="500px"
           h="100%"
-          bg="white"
+          bg="#d8f7f3"
           justifyContent="space-around"
           color="black"
           borderRadius="8px"
@@ -122,23 +124,43 @@ export default function Form(props) {
 
               {props.radio ? (
                 <>
-                  <FormLabel mb="10px" as="legend">
-                    {props.labelRadio}{' '}
-                  </FormLabel>
-                  <RadioGroup
-                    defaultValue={props.default}
-                    direction="row"
-                    w="100%"
+                  <FormControl
+                    mt="20px"
+                    mb="20px"
+                    justifyContent="space-around"
+                    display="flex"
+                    flexDir="column"
+                    as="fieldset"
+                    isDisabled={props.desabilitar ? habilitado : false}
                   >
-                    <Stack
+                    <FormLabel mt="20px " mb="10px" as="legend">
+                      {props.labelRadio}{' '}
+                    </FormLabel>
+                    <RadioGroup
+                      defaultValue={props.default}
+                      direction="row"
                       w="100%"
-                      spacing={5}
-                      direction="column"
-                      justifyContent="flex-start"
                     >
-                      {props.radiobox}
-                    </Stack>
-                  </RadioGroup>
+                      <Stack
+                        w="100%"
+                        spacing={5}
+                        direction="column"
+                        justifyContent="flex-start"
+                      >
+                        {props.radioData.map((item) => (
+                          <Radio
+                            spacing="1rem"
+                            iconColor="blue.400"
+                            iconSize="1rem"
+                            size="md"
+                            value={item.value}
+                          >
+                            {item.text}
+                          </Radio>
+                        ))}
+                      </Stack>
+                    </RadioGroup>
+                  </FormControl>
                 </>
               ) : (
                 ''
@@ -146,19 +168,31 @@ export default function Form(props) {
 
               {props.check ? (
                 <>
-                  <FormLabel mb="10px" as="legend">
-                    {props.labelCheck}{' '}
-                  </FormLabel>
-                  <CheckboxGroup defaultValue={props.default} direction="row">
-                    <Stack
-                      w="100%"
-                      spacing={5}
-                      direction="column"
-                      justifyContent="flex-start"
-                    >
-                      {props.checkbox}
-                    </Stack>
-                  </CheckboxGroup>
+                  <FormControl
+                    mt="20px"
+                    mb="20px"
+                    justifyContent="space-around"
+                    display="flex"
+                    flexDir="column"
+                    as="fieldset"
+                    isDisabled={props.desabilitar ? habilitado : false}
+                  >
+                    <FormLabel mt="20px " mb="10px" as="legend">
+                      {props.labelCheck}{' '}
+                    </FormLabel>
+                    <CheckboxGroup defaultValue={props.default} direction="row">
+                      <Stack
+                        w="100%"
+                        spacing={5}
+                        direction="column"
+                        justifyContent="flex-start"
+                      >
+                        {props.checkData.map((item) => (
+                          <Checkbox>{item.text}</Checkbox>
+                        ))}
+                      </Stack>
+                    </CheckboxGroup>
+                  </FormControl>
                 </>
               ) : (
                 ''

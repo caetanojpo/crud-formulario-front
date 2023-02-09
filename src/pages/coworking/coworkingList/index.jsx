@@ -16,7 +16,8 @@ export default function CoworkingList() {
       title="Coworking"
       tableHead={head}
       tableRows={body}
-      new="/coworking/novo"
+      new="/coworking/criar"
+      view="/coworking/atualizar"
     />
   );
 }

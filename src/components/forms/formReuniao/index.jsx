@@ -1,79 +1,106 @@
-import CheckOptions from '../../checkbox';
 import Form from '../../formulario';
-import Inputs from '../../inputs';
-import RadioOptions from '../../radiobox';
 
-export default function FormReuniao() {
+export default function FormReuniao(props) {
+  const inputData = [
+    {
+      requerido: true,
+      label1: 'Digite o nome do visitante:',
+      label2: 'Nome',
+      largura: '100%',
+      tipo: 'text',
+      placeholder: 'Nome completo',
+    },
+    {
+      requerido: true,
+      label1: 'Digite o telefone de quem está alugando:',
+      label2: 'Telefone',
+      largura: '100%',
+      tipo: 'text',
+      placeholder: '(XX)XXXX-XXXX',
+    },
+    {
+      requerido: true,
+      label1: 'Informe a data e horário da locação:',
+      label2: 'Data e horário',
+      largura: '40%',
+      tipo: 'datetime-local',
+    },
+    {
+      requerido: true,
+      label1: 'Digite o local onde ocorreu a reunião:',
+      label2: 'Local da reunião',
+      largura: '100%',
+      tipo: 'text',
+      placeholder: 'Sala de reunião, FEMA, sala de podcast...',
+    },
+    {
+      requerido: true,
+      label1: 'Informe a duração da reunião (horas/minutos):',
+      label2: 'Nome',
+      largura: '100%',
+      tipo: 'time',
+      placeholder: '',
+    },
+  ];
+  const checkData = [
+    {
+      text: 'almir',
+    },
+    {
+      text: 'dani',
+    },
+    {
+      text: 'rodriguedes',
+    },
+    {
+      text: 'jp',
+    },
+    {
+      text: 'kelvin',
+    },
+    {
+      text: 'nicolas',
+    },
+    {
+      text: 'lucas',
+    },
+    {
+      text: 'gui',
+    },
+  ];
+  const radioData = [
+    {
+      text: 'categoria A',
+      value: 1,
+    },
+    {
+      text: 'categoria B',
+      value: 2,
+    },
+    {
+      text: 'categoria C',
+      value: 3,
+    },
+    {
+      text: 'categoria D',
+      value: 4,
+    },
+  ];
   return (
     <Form
       titulo="Formulário Reunião"
-      input={
-        <>
-          <Inputs
-            label="Digite o nome do visitante:"
-            tipo="text"
-            placeholder="Nome completo"
-            errorMessage="O nome ainda não foi digitado"
-            largura="100%"
-            requerido
-          />
-          <Inputs
-            label="Digite o telefone de quem está alugando:"
-            tipo="tel"
-            largura="100%"
-            placeholder="(XX)XXXX-XXXX"
-            errorMessage="O telefone ainda não foi digitado"
-            requerido
-          />
-          <Inputs
-            label="Informe a data e horário da locação:"
-            largura="40%"
-            tipo="datetime-local"
-            requerido
-          />
-          <Inputs
-            label="Digite o local onde ocorreu a reunião"
-            tipo="text"
-            largura="100%"
-            placeholder="Sala de reunião, FEMA, sala de podcast..."
-            errorMessage="Local ainda não informado"
-            requerido
-          />
-          <Inputs
-            label="Informe a duração da reunião (horas/minutos):"
-            tipo="time"
-            largura="100%"
-            placeholder=""
-            requerido
-          />
-        </>
-      }
+      inputData={inputData}
       labelCheck="Selecione o(s) participante(s) da reunião: "
       check
-      checkbox={
-        <>
-          <CheckOptions text="almir" />
-          <CheckOptions text="dani" />
-          <CheckOptions text="rodriguedes" />
-          <CheckOptions text="jp" />
-          <CheckOptions text="kelvin" />
-          <CheckOptions text="nicolas" />
-          <CheckOptions text="lucas" />
-          <CheckOptions text="gui" />
-        </>
-      }
+      checkData={checkData}
       radio
       labelRadio="Selecione a categoria da reunião:"
-      radiobox={
-        <>
-          <RadioOptions text="categoria A" value="1" />
-          <RadioOptions text="categoria B" value="2" />
-          <RadioOptions text="categoria C" value="3" />
-          <RadioOptions text="categoria D" value="4" />
-        </>
-      }
+      radioData={radioData}
       textareaLabel="Qual foi o assunto da reunião?"
       textareaPlaceholder="Digite o assunto da reunião..."
+      alterar={props.podeAlterar ? true : false}
+      desabilitar={props.desabilitar ? true : false}
+      confirmaAlteracao={props.confirmaAlteracao}
     />
   );
 }

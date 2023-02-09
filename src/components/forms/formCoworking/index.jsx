@@ -9,7 +9,6 @@ export default function FormCoworking(props) {
       largura: '100%',
       tipo: 'text',
       placeholder: 'Nome completo',
-      errorMessage: 'O nome ainda não foi digitado',
     },
     {
       requerido: true,
@@ -18,7 +17,6 @@ export default function FormCoworking(props) {
       largura: '100%',
       tipo: 'text',
       placeholder: '(XX)XXXX-XXXX',
-      errorMessage: 'O telefone ainda não foi digitado',
     },
     {
       label1: 'Digite o nome da organização:',
@@ -79,13 +77,12 @@ export default function FormCoworking(props) {
       labelUpdate={props.labelUpdate}
       titulo="Formulário Coworking"
       inputData={inputData}
-      labelRadio="Selecione o plano desejado: "
       select
       selectData={selectData}
-      alterar={props.podeAlterar ? [true, false] : [false]}
-      desabilitar={props.desabilitar ? true : false}
       textareaLabel="Observações:"
       textareaPlaceholder="Digite as observações referente a locação..."
+      alterar={props.podeAlterar ? true : false}
+      desabilitar={props.desabilitar ? true : false}
       confirmaAlteracao={props.confirmaAlteracao}
     />
   );
