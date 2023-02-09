@@ -28,6 +28,7 @@ import ButtonForm from '../button';
 export default function Form(props) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const cancelRef = useRef();
+
   const [input, setInput] = useState('');
 
   const handleInputChange = (e) => setInput(e.target.value);
@@ -41,8 +42,9 @@ export default function Form(props) {
 
   useEffect(() => {}, [habilitado]);
 
-  const teste = (e) => {
+  const abrirAlerta = (e) => {
     e.preventDefault();
+    onOpen();
   };
   return (
     <>
@@ -173,11 +175,7 @@ export default function Form(props) {
               <Flex w="100%" justifyContent="center" gap="10px">
                 {props.confirmaAlteracao ? (
                   <>
-                    <ButtonForm
-                      text="Confirmar"
-                      funcao={teste}
-                      onClick={onOpen}
-                    />
+                    <ButtonForm text="Confirmar" funcao={abrirAlerta} />
                     <AlertDialog
                       isOpen={isOpen}
                       leastDestructiveRef={cancelRef}
@@ -186,19 +184,20 @@ export default function Form(props) {
                       <AlertDialogOverlay>
                         <AlertDialogContent>
                           <AlertDialogHeader fontSize="lg" fontWeight="bold">
-                            Delete Customer
+                            Confirmar Alteração
                           </AlertDialogHeader>
 
                           <AlertDialogBody>
-                            Are you sure? You cant undo this action afterwards.
+                            Tem certeza que deseja realizar a alteração nos
+                            dados?
                           </AlertDialogBody>
 
                           <AlertDialogFooter>
-                            <Button ref={cancelRef} onClick={onClose}>
-                              Cancel
+                            <Button colorScheme="green" onClick={onClose}>
+                              Confirmar
                             </Button>
-                            <Button colorScheme="red" onClick={onClose} ml={3}>
-                              Delete
+                            <Button ref={cancelRef} onClick={onClose} ml={3}>
+                              Cancelar
                             </Button>
                           </AlertDialogFooter>
                         </AlertDialogContent>
@@ -206,7 +205,7 @@ export default function Form(props) {
                     </AlertDialog>
                   </>
                 ) : (
-                  <ButtonForm text="Confirmar" funcao={teste} />
+                  <ButtonForm text="Confirmar" />
                 )}
 
                 {props.alterar ? (
