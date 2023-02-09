@@ -4,8 +4,10 @@ import {
   CheckboxGroup,
   Flex,
   FormControl,
+  FormErrorMessage,
   FormLabel,
   Heading,
+  Input,
   RadioGroup,
   Select,
   Stack,
@@ -16,7 +18,9 @@ import { useEffect, useState } from 'react';
 import ButtonForm from '../button';
 
 export default function Form(props) {
-  const [value, setValue] = useState('1');
+  const [input, setInput] = useState('');
+
+  const handleInputChange = (e) => setInput(e.target.value);
 
   const [habilitado, setHabilitado] = useState(true);
 
@@ -59,7 +63,27 @@ export default function Form(props) {
                 h="fit-content"
                 gap="20px"
               >
-                {props.input}
+                {props.inputData.map((item) => (
+                  <FormControl
+                    display="flex"
+                    flexDir="column"
+                    isRequired={item.requerido ? true : false}
+                    gap="5px"
+                    isDisabled={props.desabilitar ? habilitado : false}
+                  >
+                    <FormLabel>{item.label}</FormLabel>
+                    <Input
+                      outline="1px solid black !important"
+                      border="1px solid black !important"
+                      color="black"
+                      h="30px"
+                      w={item.largura}
+                      type={item.tipo}
+                      placeholder={item.placeholder}
+                      onChange={handleInputChange}
+                    />
+                  </FormControl>
+                ))}
               </Flex>
               <FormControl
                 mt="20px"
@@ -82,8 +106,6 @@ export default function Form(props) {
                       {props.labelRadio}{' '}
                     </FormLabel>
                     <RadioGroup
-                      onChange={setValue}
-                      value={value}
                       defaultValue={props.default}
                       direction="row"
                       w="100%"

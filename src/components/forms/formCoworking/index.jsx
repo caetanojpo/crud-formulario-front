@@ -1,49 +1,41 @@
-import { useEffect, useState } from 'react';
 import Form from '../../formulario';
-import Inputs from '../../inputs';
-import RadioOptions from '../../radiobox';
 import SelectOptions from '../../select';
 
 export default function FormCoworking(props) {
+  const inputData = [
+    {
+      requerido: true,
+      label: 'Digite o nome de quem está alugando:',
+      largura: '100%',
+      tipo: 'text',
+      placeholder: 'Nome completo',
+      errorMessage: 'O nome ainda não foi digitado',
+    },
+    {
+      requerido: true,
+      label: 'Digite o telefone de quem está alugando:',
+      largura: '100%',
+      tipo: 'text',
+      placeholder: '(XX)XXXX-XXXX',
+      errorMessage: 'O telefone ainda não foi digitado',
+    },
+    {
+      label: 'Digite o nome da organização:',
+      largura: '100%',
+      tipo: 'tel',
+      placeholder: 'Empresa LTDA ME',
+    },
+    {
+      requerido: true,
+      label: 'Informe a data e horário da locação:',
+      largura: '40%',
+      tipo: 'datetime-local',
+    },
+  ];
   return (
     <Form
       titulo="Formulário Coworking"
-      input={
-        <>
-          <Inputs
-            label="Digite o nome de quem está alugando:"
-            tipo="text"
-            placeholder="Nome completo"
-            errorMessage="O nome ainda não foi digitado"
-            largura="100%"
-            requerido
-            desabilitar={props.desabilitar ? true : false}
-          />
-          <Inputs
-            label="Digite o telefone de quem está alugando:"
-            tipo="tel"
-            largura="100%"
-            placeholder="(XX)XXXX-XXXX"
-            errorMessage="O telefone ainda não foi digitado"
-            requerido
-            desabilitar={props.desabilitar ? true : false}
-          />
-          <Inputs
-            label="Digite o nome da organização:"
-            tipo="text"
-            largura="100%"
-            placeholder="Empresa LTDA ME"
-            desabilitar={props.desabilitar ? true : false}
-          />
-          <Inputs
-            label="Informe a data e horário da locação:"
-            largura="40%"
-            tipo="datetime-local"
-            requerido
-            desabilitar={props.desabilitar ? true : false}
-          />
-        </>
-      }
+      inputData={inputData}
       labelRadio="Selecione o plano desejado: "
       select
       selectbox={
@@ -60,9 +52,9 @@ export default function FormCoworking(props) {
         </>
       }
       alterar={props.podeAlterar ? [true, false] : [false]}
+      desabilitar={props.desabilitar ? true : false}
       textareaLabel="Observações:"
       textareaPlaceholder="Digite as observações referente a locação..."
-      desabilitar={props.desabilitar ? true : false}
     />
   );
 }
