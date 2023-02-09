@@ -1,4 +1,10 @@
 import {
+  AlertDialog,
+  AlertDialogBody,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogContent,
+  AlertDialogOverlay,
   Box,
   Button,
   CheckboxGroup,
@@ -13,11 +19,15 @@ import {
   Stack,
   Text,
   Textarea,
+  useDisclosure,
 } from '@chakra-ui/react';
-import { useEffect, useState } from 'react';
+import './style.css';
+import { useEffect, useRef, useState } from 'react';
 import ButtonForm from '../button';
 
 export default function Form(props) {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const cancelRef = useRef();
   const [input, setInput] = useState('');
 
   const handleInputChange = (e) => setInput(e.target.value);
@@ -71,7 +81,9 @@ export default function Form(props) {
                     gap="5px"
                     isDisabled={props.desabilitar ? habilitado : false}
                   >
-                    <FormLabel>{item.label}</FormLabel>
+                    <FormLabel>
+                      {props.labelUpdate ? item.label2 : item.label1}
+                    </FormLabel>
                     <Input
                       outline="1px solid black !important"
                       border="1px solid black !important"
@@ -85,71 +97,118 @@ export default function Form(props) {
                   </FormControl>
                 ))}
               </Flex>
-              <FormControl
-                mt="20px"
-                mb="20px"
-                gap="20px"
-                justifyContent="space-around"
-                display="flex"
-                flexDir="column"
-                as="fieldset"
-                isDisabled={props.desabilitar ? habilitado : false}
-              >
-                {props.select ? (
-                  <Select placeholder="Select option">{props.selectbox}</Select>
-                ) : (
-                  ''
-                )}
-                {props.radio ? (
-                  <>
-                    <FormLabel mb="10px" as="legend">
-                      {props.labelRadio}{' '}
-                    </FormLabel>
-                    <RadioGroup
-                      defaultValue={props.default}
-                      direction="row"
-                      w="100%"
-                    >
-                      <Stack
-                        w="100%"
-                        spacing={5}
-                        direction="column"
-                        justifyContent="flex-start"
-                      >
-                        {props.radiobox}
-                      </Stack>
-                    </RadioGroup>
-                  </>
-                ) : (
-                  ''
-                )}
+              {props.select ? (
+                <FormControl
+                  mt="20px"
+                  mb="20px"
+                  justifyContent="space-around"
+                  display="flex"
+                  flexDir="column"
+                  as="fieldset"
+                  isDisabled={props.desabilitar ? habilitado : false}
+                >
+                  <FormLabel>Opção de plano:</FormLabel>
+                  <Select placeholder="Select option">
+                    {props.selectData.map((item) => (
+                      <option value={item.value}>{item.opcao}</option>
+                    ))}
+                  </Select>
+                </FormControl>
+              ) : (
+                ''
+              )}
 
-                {props.check ? (
-                  <>
-                    <FormLabel mb="10px" as="legend">
-                      {props.labelCheck}{' '}
-                    </FormLabel>
-                    <CheckboxGroup defaultValue={props.default} direction="row">
-                      <Stack
-                        w="100%"
-                        spacing={5}
-                        direction="column"
-                        justifyContent="flex-start"
-                      >
-                        {props.checkbox}
-                      </Stack>
-                    </CheckboxGroup>
-                  </>
-                ) : (
-                  ''
-                )}
-              </FormControl>
+              {props.radio ? (
+                <>
+                  <FormLabel mb="10px" as="legend">
+                    {props.labelRadio}{' '}
+                  </FormLabel>
+                  <RadioGroup
+                    defaultValue={props.default}
+                    direction="row"
+                    w="100%"
+                  >
+                    <Stack
+                      w="100%"
+                      spacing={5}
+                      direction="column"
+                      justifyContent="flex-start"
+                    >
+                      {props.radiobox}
+                    </Stack>
+                  </RadioGroup>
+                </>
+              ) : (
+                ''
+              )}
+
+              {props.check ? (
+                <>
+                  <FormLabel mb="10px" as="legend">
+                    {props.labelCheck}{' '}
+                  </FormLabel>
+                  <CheckboxGroup defaultValue={props.default} direction="row">
+                    <Stack
+                      w="100%"
+                      spacing={5}
+                      direction="column"
+                      justifyContent="flex-start"
+                    >
+                      {props.checkbox}
+                    </Stack>
+                  </CheckboxGroup>
+                </>
+              ) : (
+                ''
+              )}
+
               <Flex mt="30px" gap="10px" mb="20px" flexDir="column">
-                <Text fontWeight="600">{props.textareaLabel}</Text>
-                <Textarea placeholder={props.textareaPlaceholder} />
+                <FormControl
+                  isDisabled={props.desabilitar ? habilitado : false}
+                >
+                  <FormLabel fontWeight="600">{props.textareaLabel}</FormLabel>
+                  <Textarea placeholder={props.textareaPlaceholder} />
+                </FormControl>
               </Flex>
               <Flex w="100%" justifyContent="center" gap="10px">
-                <ButtonForm text="Confirmar" funcao={teste} />
+                {props.confirmaAlteracao ? (
+                  <>
+                    <ButtonForm
+                      text="Confirmar"
+                      funcao={teste}
+                      onClick={onOpen}
+                    />
+                    <AlertDialog
+                      isOpen={isOpen}
+                      leastDestructiveRef={cancelRef}
+                      onClose={onClose}
+                    >
+                      <AlertDialogOverlay>
+                        <AlertDialogContent>
+                          <AlertDialogHeader fontSize="lg" fontWeight="bold">
+                            Delete Customer
+                          </AlertDialogHeader>
+
+                          <AlertDialogBody>
+                            Are you sure? You cant undo this action afterwards.
+                          </AlertDialogBody>
+
+                          <AlertDialogFooter>
+                            <Button ref={cancelRef} onClick={onClose}>
+                              Cancel
+                            </Button>
+                            <Button colorScheme="red" onClick={onClose} ml={3}>
+                              Delete
+                            </Button>
+                          </AlertDialogFooter>
+                        </AlertDialogContent>
+                      </AlertDialogOverlay>
+                    </AlertDialog>
+                  </>
+                ) : (
+                  <ButtonForm text="Confirmar" funcao={teste} />
+                )}
+
                 {props.alterar ? (
                   <ButtonForm text="Editar" funcao={alteraHabilitado} />
                 ) : (
