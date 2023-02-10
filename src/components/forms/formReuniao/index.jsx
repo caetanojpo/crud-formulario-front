@@ -12,17 +12,9 @@ export default function FormReuniao(props) {
     },
     {
       requerido: true,
-      label1: 'Digite o telefone de quem está alugando:',
-      label2: 'Telefone',
-      largura: '100%',
-      tipo: 'text',
-      placeholder: '(XX)XXXX-XXXX',
-    },
-    {
-      requerido: true,
       label1: 'Informe a data e horário da locação:',
       label2: 'Data e horário',
-      largura: '40%',
+      largura: '50%',
       tipo: 'datetime-local',
     },
     {
@@ -37,7 +29,7 @@ export default function FormReuniao(props) {
       requerido: true,
       label1: 'Informe a duração da reunião (horas/minutos):',
       label2: 'Nome',
-      largura: '100%',
+      largura: '40%',
       tipo: 'time',
       placeholder: '',
     },
@@ -88,7 +80,7 @@ export default function FormReuniao(props) {
   ];
   return (
     <Form
-      titulo="Formulário Reunião"
+      titulo="Nova Reunião"
       inputData={inputData}
       labelCheck="Selecione o(s) participante(s) da reunião: "
       check

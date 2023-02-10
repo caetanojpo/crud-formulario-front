@@ -17,38 +17,40 @@ import TrForms from './tr/trForms';
 
 export default function ListForms(props) {
   return (
-    <>
+    <Flex w="100%" display="flex" justifyContent="center">
       <Flex
         padding="32px"
         fontFamily="gotham"
         flexDir="column"
-        w="full"
+        alignItems="space-between"
+        w="fit-content"
         h="100%"
-        justifyContent="flex-start"
         color="white"
-        gap="10px"
+        gap="20px"
       >
         <Flex justifyContent="center">
-          <Text fontSize="40px">{props.title}</Text>
+          <Text fontSize="40px">{props.titulo}</Text>
         </Flex>
         <Flex justifyContent="space-between">
           <Tooltip hasArrow label="Voltar" bg="gray.300" color="black">
-            <Button w="60px" bg="white">
-              <Icon
-                color="black"
-                icon="material-symbols:arrow-back-rounded"
-                width="30"
-                height="30"
-              />
-            </Button>
+            <Link to="/">
+              <Button w="60px" bg="white">
+                <Icon
+                  color="black"
+                  icon="material-symbols:arrow-back-rounded"
+                  width="30"
+                  height="30"
+                />
+              </Button>
+            </Link>
           </Tooltip>
           <Tooltip
             hasArrow
-            label="Adicione um novo registro"
+            label={props.labelNovoRegistro}
             bg="gray.300"
             color="black"
           >
-            <Link to={props.new}>
+            <Link to={props.caminhoNovoRegistro}>
               <Button w="60px" bg="white">
                 <Icon
                   color="black"
@@ -62,23 +64,34 @@ export default function ListForms(props) {
         </Flex>
 
         <TableContainer borderRadius="8px" bg="white">
-          <Table variant="striped" colorScheme="green" color="black">
+          <Table
+            width="100%"
+            variant="striped"
+            colorScheme="green"
+            color="black"
+          >
             <TableCaption>Formulários das Reuniões</TableCaption>
             <Thead>
               <Tr>
-                {props.tableHead.map((item) => {
-                  return <Th>{item}</Th>;
+                {props.tableCabecalho.map((item, index) => {
+                  return <Th key={`TH${index}`}>{item}</Th>;
                 })}
               </Tr>
             </Thead>
             <Tbody>
-              {props.tableRows.map((item) => {
-                return <TrForms body={item} view={props.view} />;
+              {props.tableConteudo.map((item, index) => {
+                return (
+                  <TrForms
+                    key={`TR${index}`}
+                    conteudo={item}
+                    caminhoDetalheRegistro={props.caminhoDetalheRegistro}
+                  />
+                );
               })}
             </Tbody>
           </Table>
         </TableContainer>
       </Flex>
-    </>
+    </Flex>
   );
 }

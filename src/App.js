@@ -4,25 +4,25 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import { Navbar } from './components/navbar';
 
-import CoworkingList from './pages/coworking/coworkingList';
-import CoworkingCreate from './pages/coworking/coworkingCreate';
-import CoworkingUpdate from './pages/coworking/coworkingUpdate';
+import CoworkingListar from './pages/coworking/coworkingListar';
+import CoworkingCriar from './pages/coworking/coworkingCriar';
+import CoworkingAtualizar from './pages/coworking/coworkingAtualizar';
 
-import ReuniaoList from './pages/reuniao/reuniaoList';
-import ReuniaoCreate from './pages/reuniao/reuniaoCreate';
-import ReuniaoUpdate from './pages/reuniao/reuniaoUpdate';
+import ReuniaoListar from './pages/reuniao/reuniaoListar';
+import ReuniaoCriar from './pages/reuniao/reuniaoCriar';
+import ReuniaoAtualizar from './pages/reuniao/reuniaoAtualizar';
 
-import CategoriaList from './pages/categoria/categoriaList';
-import CategoriaCreate from './pages/categoria/categoriaCreate';
-import CategoriaUpdate from './pages/categoria/categoriaUpdate';
+import CategoriaListar from './pages/categoria/categoriaListar';
+import CategoriaCriar from './pages/categoria/categoriaCriar';
+import CategoriaAtualizar from './pages/categoria/categoriaAtualizar';
 
-import ParticipanteList from './pages/participante/participanteList';
-import ParticipanteCreate from './pages/participante/participanteCreate';
-import ParticipanteUpdate from './pages/participante/participanteUpdate';
+import ParticipanteListar from './pages/participante/participanteListar';
+import ParticipanteCriar from './pages/participante/participanteCriar';
+import ParticipanteAtualizar from './pages/participante/participanteAtualizar';
 
-import PlanoList from './pages/plano/planoList';
-import PlanoCreate from './pages/plano/planoCreate';
-import PlanoUpdate from './pages/plano/planoUpdate';
+import PlanoListar from './pages/plano/planoListar';
+import PlanoCriar from './pages/plano/planoCriar';
+import PlanoAtualizar from './pages/plano/planoAtualizar';
 
 export default function App() {
   return (
@@ -32,28 +32,28 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Home />} />
 
-          <Route path="/coworking" element={<CoworkingList />} />
-          <Route path="/coworking/criar" element={<CoworkingCreate />} />
-          <Route path="/coworking/atualizar" element={<CoworkingUpdate />} />
+          <Route path="/coworking" element={<CoworkingListar />} />
+          <Route path="/coworking/criar" element={<CoworkingCriar />} />
+          <Route path="/coworking/atualizar" element={<CoworkingAtualizar />} />
 
-          <Route path="/reuniao" element={<ReuniaoList />} />
-          <Route path="/reuniao/criar" element={<ReuniaoCreate />} />
-          <Route path="/reuniao/atualizar" element={<ReuniaoUpdate />} />
+          <Route path="/reuniao" element={<ReuniaoListar />} />
+          <Route path="/reuniao/criar" element={<ReuniaoCriar />} />
+          <Route path="/reuniao/atualizar" element={<ReuniaoAtualizar />} />
 
-          <Route path="/categoria" element={<CategoriaList />} />
-          <Route path="/categoria/criar" element={<CategoriaCreate />} />
-          <Route path="/categoria/atualizar" element={<CategoriaUpdate />} />
+          <Route path="/categoria" element={<CategoriaListar />} />
+          <Route path="/categoria/criar" element={<CategoriaCriar />} />
+          <Route path="/categoria/atualizar" element={<CategoriaAtualizar />} />
 
-          <Route path="/participante" element={<ParticipanteList />} />
-          <Route path="/participante/criar" element={<ParticipanteCreate />} />
+          <Route path="/participante" element={<ParticipanteListar />} />
+          <Route path="/participante/criar" element={<ParticipanteCriar />} />
           <Route
             path="/participante/atualizar"
-            element={<ParticipanteUpdate />}
+            element={<ParticipanteAtualizar />}
           />
 
-          <Route path="/plano" element={<PlanoList />} />
-          <Route path="/plano/criar" element={<PlanoCreate />} />
-          <Route path="/plano/atualizar" element={<PlanoUpdate />} />
+          <Route path="/plano" element={<PlanoListar />} />
+          <Route path="/plano/criar" element={<PlanoCriar />} />
+          <Route path="/plano/atualizar" element={<PlanoAtualizar />} />
 
           <Route path="/*" element={<div>Página não encontrada</div>} />
         </Routes>

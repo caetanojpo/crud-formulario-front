@@ -29,7 +29,7 @@ export default function FormCoworking(props) {
       requerido: true,
       label1: 'Informe a data e horário da locação:',
       label2: 'Data e horário da locação',
-      largura: '40%',
+      largura: '50%',
       tipo: 'datetime-local',
     },
   ];
@@ -75,7 +75,7 @@ export default function FormCoworking(props) {
   return (
     <Form
       labelUpdate={props.labelUpdate}
-      titulo="Formulário Coworking"
+      titulo={props.titulo}
       inputData={inputData}
       select
       selectData={selectData}

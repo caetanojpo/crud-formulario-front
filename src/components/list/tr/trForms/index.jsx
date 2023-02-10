@@ -19,18 +19,18 @@ import { Link } from 'react-router-dom';
 export default function TrForms(props) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const cancelRef = useRef();
-  const cols = Object.values(props.body);
+  const colunas = Object.values(props.conteudo);
   return (
     <>
       <Tr>
-        {cols.map((item) => (
+        {colunas.map((item) => (
           <Td>{item}</Td>
         ))}
 
         <Td>
           <Flex justifyContent="flex-end">
             <Tooltip hasArrow label="Ver detalhes" bg="gray.300" color="black">
-              <Link to={props.view}>
+              <Link to={props.caminhoDetalheRegistro}>
                 <Button mr="10px">
                   <Icon icon="ic:outline-remove-red-eye" />
                 </Button>
@@ -38,7 +38,7 @@ export default function TrForms(props) {
             </Tooltip>
             <Tooltip
               hasArrow
-              label="Excluir formulário"
+              label="Excluir registro"
               bg="gray.300"
               color="black"
             >

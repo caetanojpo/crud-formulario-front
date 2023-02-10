@@ -1,5 +1,5 @@
 import FormCategoria from '../../../components/forms/formCategorias';
 
-export default function CategoriaCreate() {
+export default function CategoriaCriar() {
   return <FormCategoria />;
 }

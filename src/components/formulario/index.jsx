@@ -10,7 +10,6 @@ import {
   CheckboxGroup,
   Flex,
   FormControl,
-  FormErrorMessage,
   FormLabel,
   Heading,
   Input,
@@ -18,7 +17,6 @@ import {
   RadioGroup,
   Select,
   Stack,
-  Text,
   Textarea,
   useDisclosure,
   Checkbox,
@@ -111,8 +109,8 @@ export default function Form(props) {
                   as="fieldset"
                   isDisabled={props.desabilitar ? habilitado : false}
                 >
-                  <FormLabel>Opção de plano:</FormLabel>
-                  <Select placeholder="Select option">
+                  <FormLabel>Plano:</FormLabel>
+                  <Select placeholder="Selecione uma opção">
                     {props.selectData.map((item) => (
                       <option value={item.value}>{item.opcao}</option>
                     ))}

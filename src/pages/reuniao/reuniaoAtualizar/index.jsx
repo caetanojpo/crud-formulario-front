@@ -1,5 +1,5 @@
 import FormReuniao from '../../../components/forms/formReuniao';
 
-export default function ReuniaoUpdate() {
+export default function ReuniaoAtualizar() {
   return <FormReuniao podeAlterar desabilitar labelUpdate confirmaAlteracao />;
 }
