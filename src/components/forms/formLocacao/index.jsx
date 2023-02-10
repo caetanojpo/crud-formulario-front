@@ -1,6 +1,6 @@
-import Form from '../../formulario';
+import Form from '../index';
 
-export default function FormCoworking(props) {
+export default function FormLocacao(props) {
   const inputData = [
     {
       requerido: true,
@@ -72,6 +72,7 @@ export default function FormCoworking(props) {
       opcao: 'Sala de Podcast - 6 horas',
     },
   ];
+
   return (
     <Form
       labelUpdate={props.labelUpdate}
@@ -84,6 +85,7 @@ export default function FormCoworking(props) {
       alterar={props.podeAlterar ? true : false}
       desabilitar={props.desabilitar ? true : false}
       confirmaAlteracao={props.confirmaAlteracao}
+      labelSelect="Plano:"
     />
   );
 }

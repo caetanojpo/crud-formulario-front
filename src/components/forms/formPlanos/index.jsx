@@ -1,4 +1,4 @@
-import Form from '../../formulario';
+import Form from '../index';
 
 export default function FormPlanos(props) {
   const inputData = [
@@ -13,7 +13,7 @@ export default function FormPlanos(props) {
   ];
   return (
     <Form
-      titulo="Formulário Planos"
+      titulo={props.titulo}
       inputData={inputData}
       textareaLabel="Observações:"
       textareaPlaceholder="Digite aqui as observações do plano..."

@@ -1,4 +1,4 @@
-import Form from '../../formulario';
+import Form from '../index';
 
 export default function FormParticipante(props) {
   const inputData = [
@@ -20,14 +20,6 @@ export default function FormParticipante(props) {
     },
     {
       requerido: true,
-      label1: 'Digite o telefone do participante:',
-      label2: 'tel',
-      largura: '100%',
-      tipo: 'email',
-      placeholder: '(XX) XXXXX-XXXX',
-    },
-    {
-      requerido: true,
       label1: 'Informe o cargo do participante:',
       label2: 'text',
       largura: '100%',
@@ -37,7 +29,7 @@ export default function FormParticipante(props) {
   ];
   return (
     <Form
-      titulo="Formulário do Participante"
+      titulo={props.titulo}
       inputData={inputData}
       textareaLabel="Observações:"
       textareaPlaceholder="Digite aqui as informações extras sobre o participante."

@@ -1,4 +1,4 @@
-import Form from '../../formulario';
+import Form from '../index';
 
 export default function FormReuniao(props) {
   const inputData = [
@@ -34,6 +34,7 @@ export default function FormReuniao(props) {
       placeholder: '',
     },
   ];
+
   const checkData = [
     {
       text: 'almir',
@@ -60,24 +61,46 @@ export default function FormReuniao(props) {
       text: 'gui',
     },
   ];
-  const radioData = [
+
+  const selectData = [
     {
-      text: 'categoria A',
       value: 1,
+      opcao: 'Coworking - Diário - 4 horas',
     },
     {
-      text: 'categoria B',
       value: 2,
+      opcao: 'Coworking - Diário - 8 horas',
     },
     {
-      text: 'categoria C',
       value: 3,
+      opcao: 'Coworking - Mensal - 4 horas',
     },
     {
-      text: 'categoria D',
       value: 4,
+      opcao: 'Coworking - Mensal - 8 horas',
+    },
+    {
+      value: 5,
+      opcao: 'Sala de Reunião - 4 horas',
+    },
+    {
+      value: 6,
+      opcao: 'Sala de Reunião - 8 horas',
+    },
+    {
+      value: 7,
+      opcao: 'Sala de Podcast - 2 horas',
+    },
+    {
+      value: 8,
+      opcao: 'Sala de Podcast - 4 horas',
+    },
+    {
+      value: 9,
+      opcao: 'Sala de Podcast - 6 horas',
     },
   ];
+
   return (
     <Form
       titulo="Nova Reunião"
@@ -85,14 +108,16 @@ export default function FormReuniao(props) {
       labelCheck="Selecione o(s) participante(s) da reunião: "
       check
       checkData={checkData}
-      radio
+      select
+      selectData={selectData}
       labelRadio="Selecione a categoria da reunião:"
-      radioData={radioData}
       textareaLabel="Qual foi o assunto da reunião?"
       textareaPlaceholder="Digite o assunto da reunião..."
       alterar={props.podeAlterar ? true : false}
       desabilitar={props.desabilitar ? true : false}
       confirmaAlteracao={props.confirmaAlteracao}
+      labelSelect="Categoria:"
+      required
     />
   );
 }

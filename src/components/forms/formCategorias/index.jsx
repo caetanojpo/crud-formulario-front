@@ -1,4 +1,4 @@
-import Form from '../../formulario';
+import Form from '../index';
 
 const inputData = [
   {
@@ -14,7 +14,7 @@ const inputData = [
 export default function FormCategoria(props) {
   return (
     <Form
-      titulo="Formulário do Categoria"
+      titulo={props.titulo}
       inputData={inputData}
       textareaLabel="Observações:"
       textareaPlaceholder="Digite aqui as informações extras sobre a categoria."

@@ -1,5 +1,5 @@
 import FormCategoria from '../../../components/forms/formCategorias';
 
 export default function CategoriaCriar() {
-  return <FormCategoria />;
+  return <FormCategoria titulo="Nova Categoria" />;
 }

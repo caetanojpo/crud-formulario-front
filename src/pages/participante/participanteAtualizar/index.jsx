@@ -2,6 +2,12 @@ import FormParticipante from '../../../components/forms/formParticipante';
 
 export default function ParticipanteAtualizar() {
   return (
-    <FormParticipante podeAlterar desabilitar labelUpdate confirmaAlteracao />
+    <FormParticipante
+      titulo="Detalhes do Participante"
+      podeAlterar
+      desabilitar
+      labelUpdate
+      confirmaAlteracao
+    />
   );
 }

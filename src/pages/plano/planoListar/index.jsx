@@ -1,4 +1,4 @@
-import ListForms from '../../../components/list';
+import TableFormulario from '../../../components/list';
 
 export default function PlanoListar() {
   const cabecalho = ['ID', 'DESCRIÇÃO'];
@@ -9,8 +9,8 @@ export default function PlanoListar() {
     },
   ];
   return (
-    <ListForms
-      titulo="Participantes"
+    <TableFormulario
+      titulo="Planos"
       tableCabecalho={cabecalho}
       tableConteudo={conteudo}
       caminhoNovoRegistro="/plano/criar"

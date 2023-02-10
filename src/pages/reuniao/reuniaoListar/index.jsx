@@ -1,4 +1,4 @@
-import ListForms from '../../../components/list';
+import TableFormulario from '../../../components/list';
 
 export default function ReuniaoListar() {
   const cabecalho = [
@@ -20,7 +20,7 @@ export default function ReuniaoListar() {
     },
   ];
   return (
-    <ListForms
+    <TableFormulario
       titulo="Reuniões"
       tableCabecalho={cabecalho}
       tableConteudo={conteudo}

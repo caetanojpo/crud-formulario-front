@@ -15,7 +15,7 @@ import {
 } from '@chakra-ui/react';
 import TrForms from './tr/trForms';
 
-export default function ListForms(props) {
+export default function TableFormulario(props) {
   return (
     <Flex w="100%" display="flex" justifyContent="center">
       <Flex
@@ -26,7 +26,7 @@ export default function ListForms(props) {
         w="fit-content"
         h="100%"
         color="white"
-        gap="20px"
+        gap="35px"
       >
         <Flex justifyContent="center">
           <Text fontSize="40px">{props.titulo}</Text>

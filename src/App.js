@@ -4,9 +4,9 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import { Navbar } from './components/navbar';
 
-import CoworkingListar from './pages/coworking/coworkingListar';
-import CoworkingCriar from './pages/coworking/coworkingCriar';
-import CoworkingAtualizar from './pages/coworking/coworkingAtualizar';
+import LocacaoListar from './pages/locacao/locacaoListar';
+import LocacaoCriar from './pages/locacao/locacaoCriar';
+import LocacaoAtualizar from './pages/locacao/locacaoAtualizar';
 
 import ReuniaoListar from './pages/reuniao/reuniaoListar';
 import ReuniaoCriar from './pages/reuniao/reuniaoCriar';
@@ -32,9 +32,9 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Home />} />
 
-          <Route path="/coworking" element={<CoworkingListar />} />
-          <Route path="/coworking/criar" element={<CoworkingCriar />} />
-          <Route path="/coworking/atualizar" element={<CoworkingAtualizar />} />
+          <Route path="/locacao" element={<LocacaoListar />} />
+          <Route path="/locacao/criar" element={<LocacaoCriar />} />
+          <Route path="/locacao/atualizar" element={<LocacaoAtualizar />} />
 
           <Route path="/reuniao" element={<ReuniaoListar />} />
           <Route path="/reuniao/criar" element={<ReuniaoCriar />} />

@@ -1,4 +1,4 @@
-import ListForms from '../../../components/list';
+import TableFormulario from '../../../components/list';
 
 export default function CategoriaListar() {
   const cabecalho = ['ID', 'DESCRIÇÃO'];
@@ -9,7 +9,7 @@ export default function CategoriaListar() {
     },
   ];
   return (
-    <ListForms
+    <TableFormulario
       titulo="Categorias"
       tableCabecalho={cabecalho}
       tableConteudo={conteudo}

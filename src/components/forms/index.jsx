@@ -13,8 +13,6 @@ import {
   FormLabel,
   Heading,
   Input,
-  Radio,
-  RadioGroup,
   Select,
   Stack,
   Textarea,
@@ -101,6 +99,7 @@ export default function Form(props) {
               </Flex>
               {props.select ? (
                 <FormControl
+                  isRequired
                   mt="20px"
                   mb="20px"
                   justifyContent="space-around"
@@ -109,7 +108,7 @@ export default function Form(props) {
                   as="fieldset"
                   isDisabled={props.desabilitar ? habilitado : false}
                 >
-                  <FormLabel>Plano:</FormLabel>
+                  <FormLabel>{props.labelSelect}</FormLabel>
                   <Select placeholder="Selecione uma opção">
                     {props.selectData.map((item) => (
                       <option value={item.value}>{item.opcao}</option>
@@ -120,53 +119,10 @@ export default function Form(props) {
                 ''
               )}
 
-              {props.radio ? (
-                <>
-                  <FormControl
-                    mt="20px"
-                    mb="20px"
-                    justifyContent="space-around"
-                    display="flex"
-                    flexDir="column"
-                    as="fieldset"
-                    isDisabled={props.desabilitar ? habilitado : false}
-                  >
-                    <FormLabel mt="20px " mb="10px" as="legend">
-                      {props.labelRadio}{' '}
-                    </FormLabel>
-                    <RadioGroup
-                      defaultValue={props.default}
-                      direction="row"
-                      w="100%"
-                    >
-                      <Stack
-                        w="100%"
-                        spacing={5}
-                        direction="column"
-                        justifyContent="flex-start"
-                      >
-                        {props.radioData.map((item) => (
-                          <Radio
-                            spacing="1rem"
-                            iconColor="blue.400"
-                            iconSize="1rem"
-                            size="md"
-                            value={item.value}
-                          >
-                            {item.text}
-                          </Radio>
-                        ))}
-                      </Stack>
-                    </RadioGroup>
-                  </FormControl>
-                </>
-              ) : (
-                ''
-              )}
-
               {props.check ? (
                 <>
                   <FormControl
+                    isRequired
                     mt="20px"
                     mb="20px"
                     justifyContent="space-around"
@@ -196,14 +152,22 @@ export default function Form(props) {
                 ''
               )}
 
-              <Flex mt="30px" gap="10px" mb="20px" flexDir="column">
-                <FormControl
-                  isDisabled={props.desabilitar ? habilitado : false}
-                >
-                  <FormLabel fontWeight="600">{props.textareaLabel}</FormLabel>
-                  <Textarea placeholder={props.textareaPlaceholder} />
-                </FormControl>
-              </Flex>
+              {props.observacao ? (
+                <Flex mt="30px" gap="10px" mb="20px" flexDir="column">
+                  <FormControl
+                    isRequired={props.required}
+                    isDisabled={props.desabilitar ? habilitado : false}
+                  >
+                    <FormLabel fontWeight="600">
+                      {props.textareaLabel}
+                    </FormLabel>
+                    <Textarea placeholder={props.textareaPlaceholder} />
+                  </FormControl>
+                </Flex>
+              ) : (
+                ''
+              )}
+
               <Flex w="100%" justifyContent="center" gap="10px">
                 {props.confirmaAlteracao ? (
                   <>

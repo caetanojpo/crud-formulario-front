@@ -1,8 +1,8 @@
-import FormCoworking from '../../../components/forms/formCoworking';
+import FormLocacao from '../../../components/forms/formLocacao';
 
-export default function CoworkingAtualizar() {
+export default function LocacaoAtualizar() {
   return (
-    <FormCoworking
+    <FormLocacao
       titulo="Detalhes Locação"
       podeAlterar
       desabilitar

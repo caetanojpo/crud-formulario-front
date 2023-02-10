@@ -19,26 +19,30 @@ export function Navbar() {
       </Flex>
 
       <Dropdown
-        title="Reunião"
-        listPath="/reuniao"
-        createPath="/reuniao/criar"
+        titulo="Reunião"
+        enderecoListagem="/reuniao"
+        enderecoCriacao="/reuniao/criar"
       />
       <Dropdown
-        title="Coworking"
-        listPath="/coworking"
-        createPath="/coworking/criar"
+        titulo="Locacao"
+        enderecoListagem="/locacao"
+        enderecoCriacao="/locacao/criar"
       />
       <Dropdown
-        title="Categoria"
-        listPath="/categoria"
-        createPath="/categoria/criar"
+        titulo="Categoria"
+        enderecoListagem="/categoria"
+        enderecoCriacao="/categoria/criar"
       />
       <Dropdown
-        title="Participante"
-        listPath="/participante"
-        createPath="/participante/criar"
+        titulo="Participante"
+        enderecoListagem="/participante"
+        enderecoCriacao="/participante/criar"
       />
-      <Dropdown title="Plano" listPath="/plano" createPath="/plano/criar" />
+      <Dropdown
+        titulo="Plano"
+        enderecoListagem="/plano"
+        enderecoCriacao="/plano/criar"
+      />
     </Flex>
   );
 }
