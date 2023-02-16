@@ -8,6 +8,8 @@ export default function FormParticipante(props) {
       label2: 'Nome',
       largura: '100%',
       tipo: 'text',
+      id: 'nome',
+      name: 'nome',
       placeholder: 'Nome completo',
     },
     {
@@ -16,6 +18,8 @@ export default function FormParticipante(props) {
       label2: 'E-Mail',
       largura: '100%',
       tipo: 'email',
+      id: 'email',
+      name: 'email',
       placeholder: 'fulano@fomentavale.com.br',
     },
     {
@@ -23,7 +27,9 @@ export default function FormParticipante(props) {
       label1: 'Informe o cargo do participante:',
       label2: 'text',
       largura: '100%',
-      tipo: 'email',
+      tipo: 'text',
+      id: 'cargo',
+      name: 'cargo',
       placeholder: 'Gestor/Estagiário',
     },
   ];
@@ -31,11 +37,10 @@ export default function FormParticipante(props) {
     <Form
       titulo={props.titulo}
       inputData={inputData}
-      textareaLabel="Observações:"
-      textareaPlaceholder="Digite aqui as informações extras sobre o participante."
       alterar={props.podeAlterar ? true : false}
       desabilitar={props.desabilitar ? true : false}
       confirmaAlteracao={props.confirmaAlteracao}
+      dadosRequisicao={props.dadosRequisicao}
     />
   );
 }

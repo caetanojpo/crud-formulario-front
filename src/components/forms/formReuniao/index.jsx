@@ -1,4 +1,8 @@
+import { useEffect, useState } from 'react';
+import { Api } from '../../../api/api';
+import Carregando from '../../carregando';
 import Form from '../index';
+import FormReunioes from '../teste';
 
 export default function FormReuniao(props) {
   const inputData = [
@@ -9,13 +13,17 @@ export default function FormReuniao(props) {
       largura: '100%',
       tipo: 'text',
       placeholder: 'Nome completo',
+      id: 'visita',
+      name: 'visita',
     },
     {
       requerido: true,
-      label1: 'Informe a data e horário da locação:',
+      label1: 'Informe a data e horário da reunião:',
       label2: 'Data e horário',
       largura: '50%',
       tipo: 'datetime-local',
+      id: 'data',
+      name: 'data',
     },
     {
       requerido: true,
@@ -24,6 +32,8 @@ export default function FormReuniao(props) {
       largura: '100%',
       tipo: 'text',
       placeholder: 'Sala de reunião, FEMA, sala de podcast...',
+      id: 'local',
+      name: 'local',
     },
     {
       requerido: true,
@@ -32,92 +42,82 @@ export default function FormReuniao(props) {
       largura: '40%',
       tipo: 'time',
       placeholder: '',
+      id: 'duracao',
+      name: 'duracao',
     },
   ];
 
-  const checkData = [
-    {
-      text: 'almir',
-    },
-    {
-      text: 'dani',
-    },
-    {
-      text: 'rodriguedes',
-    },
-    {
-      text: 'jp',
-    },
-    {
-      text: 'kelvin',
-    },
-    {
-      text: 'nicolas',
-    },
-    {
-      text: 'lucas',
-    },
-    {
-      text: 'gui',
-    },
-  ];
+  const [conteudo, setConteudo] = useState(false);
+  const [multiData, setMultiData] = useState('');
+  const [selectData, setSelectData] = useState('');
 
-  const selectData = [
-    {
-      value: 1,
-      opcao: 'Coworking - Diário - 4 horas',
-    },
-    {
-      value: 2,
-      opcao: 'Coworking - Diário - 8 horas',
-    },
-    {
-      value: 3,
-      opcao: 'Coworking - Mensal - 4 horas',
-    },
-    {
-      value: 4,
-      opcao: 'Coworking - Mensal - 8 horas',
-    },
-    {
-      value: 5,
-      opcao: 'Sala de Reunião - 4 horas',
-    },
-    {
-      value: 6,
-      opcao: 'Sala de Reunião - 8 horas',
-    },
-    {
-      value: 7,
-      opcao: 'Sala de Podcast - 2 horas',
-    },
-    {
-      value: 8,
-      opcao: 'Sala de Podcast - 4 horas',
-    },
-    {
-      value: 9,
-      opcao: 'Sala de Podcast - 6 horas',
-    },
-  ];
+  useEffect(() => {
+    if (!conteudo) {
+      Promise.all([
+        Api.getRequest('/participantes'),
+        Api.getRequest('/categorias'),
+      ]).then((response) => {
+        const participantes = response.shift();
+        const categorias = response.shift();
+
+        const participantesTratados = participantes.data.map((item) => {
+          return { label: item.nome, value: item.id };
+        });
+
+        setMultiData(participantesTratados);
+        setSelectData(categorias.data);
+        setConteudo(true);
+      });
+    }
+  });
+
+  if (!conteudo) {
+    return <Carregando />;
+  }
 
   return (
-    <Form
-      titulo="Nova Reunião"
-      inputData={inputData}
-      labelCheck="Selecione o(s) participante(s) da reunião: "
-      check
-      checkData={checkData}
-      select
-      selectData={selectData}
-      labelRadio="Selecione a categoria da reunião:"
-      textareaLabel="Qual foi o assunto da reunião?"
-      textareaPlaceholder="Digite o assunto da reunião..."
-      alterar={props.podeAlterar ? true : false}
-      desabilitar={props.desabilitar ? true : false}
-      confirmaAlteracao={props.confirmaAlteracao}
-      labelSelect="Categoria:"
-      required
-    />
+    <>
+      {/* <Form
+        titulo="Nova Reunião"
+        inputData={inputData}
+        labelMulti="Selecione o(s) participante(s) da reunião: "
+        multiData={multiData}
+        multiSelect
+        select
+        selectData={selectData}
+        labelSelect="Selecione a categoria da reunião:"
+        idSelect="categoriaId"
+        textarea
+        textareaId="assunto"
+        textareaLabel="Qual foi o assunto da reunião?"
+        textareaPlaceholder="Digite o assunto da reunião..."
+        alterar={props.podeAlterar ? true : false}
+        desabilitar={props.desabilitar ? true : false}
+        confirmaAlteracao={props.confirmaAlteracao}
+        required
+        dadosRequisicao={props.dadosRequisicao}
+      /> */}
+
+      <FormReunioes
+        titulo="Nova Reunião"
+        inputData={inputData}
+        labelMulti="Selecione o(s) participante(s) da reunião: "
+        multiData={multiData}
+        multiSelect
+        select
+        selectData={selectData}
+        labelSelect="Selecione a categoria da reunião:"
+        idSelect="categoriaId"
+        textarea
+        textareaId="assunto"
+        textareaLabel="Qual foi o assunto da reunião?"
+        textareaPlaceholder="Digite o assunto da reunião..."
+        alterar={props.podeAlterar ? true : false}
+        desabilitar={props.desabilitar ? true : false}
+        confirmaAlteracao={props.confirmaAlteracao}
+        required
+        dadosRequisicao={props.dadosRequisicao}
+      />
+    </>
   );
 }

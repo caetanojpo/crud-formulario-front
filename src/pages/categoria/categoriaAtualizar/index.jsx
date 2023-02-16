@@ -1,13 +1,11 @@
-import FormCategoria from '../../../components/forms/formCategorias';
+import FormAtualizarCP from '../../../components/forms/formAtualizarCP';
 
 export default function CategoriaAtualizar() {
   return (
-    <FormCategoria
-      titulo="Detalhes Categoria"
-      podeAlterar
-      desabilitar
-      labelUpdate
-      confirmaAlteracao
+    <FormAtualizarCP
+      titulo="Detalhes da Categoria"
+      labelInput="Descrição da Categoria: "
+      voltar="/categorias"
     />
   );
 }

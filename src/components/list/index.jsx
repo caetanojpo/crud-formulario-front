@@ -50,7 +50,7 @@ export default function TableFormulario(props) {
             bg="gray.300"
             color="black"
           >
-            <Link to={props.caminhoNovoRegistro}>
+            <Link to={props.url}>
               <Button w="60px" bg="white">
                 <Icon
                   color="black"
@@ -80,13 +80,7 @@ export default function TableFormulario(props) {
             </Thead>
             <Tbody>
               {props.tableConteudo.map((item, index) => {
-                return (
-                  <TrForms
-                    key={`TR${index}`}
-                    conteudo={item}
-                    caminhoDetalheRegistro={props.caminhoDetalheRegistro}
-                  />
-                );
+                return <TrForms key={index} conteudo={item} url={props.url} />;
               })}
             </Tbody>
           </Table>

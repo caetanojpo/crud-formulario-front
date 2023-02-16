@@ -22,6 +22,12 @@
     "import/prefer-default-export": "off",
     "import/no-extraneous-dependencies": "off",
     "no-unneeded-ternary": "off",
-    "react/no-array-index-key": "off"
+    "react/no-array-index-key": "off",
+    "no-use-before-define": "off",
+    "no-var": "off",
+    "vars-on-top": "off",
+    "array-callback-return": "off",
+    "no-return-assign": "off",
+    "no-param-reassign": "off"
   }
 }

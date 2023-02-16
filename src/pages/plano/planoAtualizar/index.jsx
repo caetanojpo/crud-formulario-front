@@ -1,13 +1,11 @@
-import FormPlanos from '../../../components/forms/formPlanos';
+import FormAtualizarCP from '../../../components/forms/formAtualizarCP';
 
 export default function PlanoAtualizar() {
   return (
-    <FormPlanos
+    <FormAtualizarCP
       titulo="Detalhes do Plano"
-      podeAlterar
-      desabilitar
-      labelUpdate
-      confirmaAlteracao
+      labelInput="Descrição do plano: "
+      voltar="/planos"
     />
   );
 }

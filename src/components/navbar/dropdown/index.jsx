@@ -1,4 +1,5 @@
 import { Text, Menu, MenuButton, MenuList, MenuItem } from '@chakra-ui/react';
+import { Icon } from '@iconify/react';
 import { Link } from 'react-router-dom';
 
 export default function Dropdown({
@@ -9,8 +10,13 @@ export default function Dropdown({
   return (
     <Menu>
       <MenuButton>
-        <Text fontWeight="500" fontSize="18px" color="#ffff">
+        <Text display="flex" fontWeight="500" fontSize="18px" color="#ffff">
           {titulo}
+          <Icon
+            icon="material-symbols:arrow-drop-down-rounded"
+            width="30"
+            height="30"
+          />
         </Text>
       </MenuButton>
       <MenuList>

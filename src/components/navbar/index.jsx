@@ -20,28 +20,28 @@ export function Navbar() {
 
       <Dropdown
         titulo="Reunião"
-        enderecoListagem="/reuniao"
-        enderecoCriacao="/reuniao/criar"
+        enderecoListagem="/reunioes"
+        enderecoCriacao="/reuniao"
       />
       <Dropdown
-        titulo="Locacao"
-        enderecoListagem="/locacao"
-        enderecoCriacao="/locacao/criar"
+        titulo="Locação"
+        enderecoListagem="/locacoes"
+        enderecoCriacao="/locacao"
       />
       <Dropdown
         titulo="Categoria"
-        enderecoListagem="/categoria"
-        enderecoCriacao="/categoria/criar"
+        enderecoListagem="/categorias"
+        enderecoCriacao="/categoria"
       />
       <Dropdown
         titulo="Participante"
-        enderecoListagem="/participante"
-        enderecoCriacao="/participante/criar"
+        enderecoListagem="/participantes"
+        enderecoCriacao="/participante"
       />
       <Dropdown
         titulo="Plano"
-        enderecoListagem="/plano"
-        enderecoCriacao="/plano/criar"
+        enderecoListagem="/planos"
+        enderecoCriacao="/plano"
       />
     </Flex>
   );

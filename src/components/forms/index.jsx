@@ -1,3 +1,5 @@
+/* eslint-disable radix */
+/* eslint-disable eqeqeq */
 import {
   AlertDialog,
   AlertDialogBody,
@@ -7,31 +9,29 @@ import {
   AlertDialogOverlay,
   Box,
   Button,
-  CheckboxGroup,
-  Flex,
   FormControl,
   FormLabel,
   Heading,
   Input,
-  Select,
-  Stack,
+  Select as ChakraSelect,
   Textarea,
+  Flex,
   useDisclosure,
-  Checkbox,
 } from '@chakra-ui/react';
 import './style.css';
 import { useEffect, useRef, useState } from 'react';
+import Select from 'react-select';
+import { useNavigate } from 'react-router-dom';
 import ButtonForm from '../button';
+import { Api } from '../../api/api';
 
 export default function Form(props) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const cancelRef = useRef();
-
-  const [input, setInput] = useState('');
-
-  const handleInputChange = (e) => setInput(e.target.value);
+  const navigate = useNavigate();
 
   const [habilitado, setHabilitado] = useState(true);
+  const [dados, setDados] = useState('');
 
   const alteraHabilitado = (e) => {
     e.preventDefault();
@@ -44,6 +44,22 @@ export default function Form(props) {
     e.preventDefault();
     onOpen();
   };
+
+  const atualizarDados = (e) => {
+    setDados({
+      ...dados,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const enviarDados = async (e) => {
+    e.preventDefault();
+
+    await Api.postRequest(props.dadosRequisicao.url, dados);
+
+    navigate(props.dadosRequisicao.voltar);
+  };
+
   return (
     <>
       <Flex width="full" align="center" justifyContent="center">
@@ -66,15 +82,20 @@ export default function Form(props) {
             </Heading>
           </Box>
           <Box h="100%" textAlign="left">
-            <form type="submit" style={{ height: '100%' }}>
+            <form
+              type="submit"
+              style={{ height: '100%' }}
+              onSubmit={enviarDados}
+            >
               <Flex
                 flexDir="column"
                 justifyContent="space-around"
                 h="fit-content"
                 gap="20px"
               >
-                {props.inputData.map((item) => (
+                {props.inputData.map((item, index) => (
                   <FormControl
+                    key={`select${index}`}
                     display="flex"
                     flexDir="column"
                     isRequired={item.requerido ? true : false}
@@ -92,7 +113,9 @@ export default function Form(props) {
                       w={item.largura}
                       type={item.tipo}
                       placeholder={item.placeholder}
-                      onChange={handleInputChange}
+                      id={item.id}
+                      name={item.name}
+                      onChange={atualizarDados}
                     />
                   </FormControl>
                 ))}
@@ -109,50 +132,48 @@ export default function Form(props) {
                   isDisabled={props.desabilitar ? habilitado : false}
                 >
                   <FormLabel>{props.labelSelect}</FormLabel>
-                  <Select placeholder="Selecione uma opção">
+
+                  <ChakraSelect
+                    id={props.idSelect}
+                    name={props.idSelect}
+                    placeholder="Selecione uma opção"
+                  >
                     {props.selectData.map((item) => (
-                      <option value={item.value}>{item.opcao}</option>
+                      <option value={item.id}>{item.descricao}</option>
                     ))}
-                  </Select>
+                  </ChakraSelect>
                 </FormControl>
               ) : (
                 ''
               )}
 
-              {props.check ? (
-                <>
-                  <FormControl
-                    isRequired
-                    mt="20px"
-                    mb="20px"
-                    justifyContent="space-around"
-                    display="flex"
-                    flexDir="column"
-                    as="fieldset"
-                    isDisabled={props.desabilitar ? habilitado : false}
-                  >
-                    <FormLabel mt="20px " mb="10px" as="legend">
-                      {props.labelCheck}{' '}
-                    </FormLabel>
-                    <CheckboxGroup defaultValue={props.default} direction="row">
-                      <Stack
-                        w="100%"
-                        spacing={5}
-                        direction="column"
-                        justifyContent="flex-start"
-                      >
-                        {props.checkData.map((item) => (
-                          <Checkbox>{item.text}</Checkbox>
-                        ))}
-                      </Stack>
-                    </CheckboxGroup>
-                  </FormControl>
-                </>
+              {props.multiSelect ? (
+                <FormControl
+                  isRequired
+                  mt="20px"
+                  mb="20px"
+                  justifyContent="space-around"
+                  display="flex"
+                  flexDir="column"
+                  as="fieldset"
+                  isDisabled={props.desabilitar ? habilitado : false}
+                >
+                  <FormLabel>{props.labelMulti}</FormLabel>
+
+                  <Select
+                    id="multi"
+                    name="multi"
+                    isMulti
+                    MultiValue
+                    options={props.multiData}
+                    placeholder="Selecione..."
+                  />
+                </FormControl>
               ) : (
                 ''
               )}
 
-              {props.observacao ? (
+              {props.textarea ? (
                 <Flex mt="30px" gap="10px" mb="20px" flexDir="column">
                   <FormControl
                     isRequired={props.required}
@@ -161,7 +182,12 @@ export default function Form(props) {
                     <FormLabel fontWeight="600">
                       {props.textareaLabel}
                     </FormLabel>
-                    <Textarea placeholder={props.textareaPlaceholder} />
+                    <Textarea
+                      id={props.textareaId || 'observacao'}
+                      name={props.textareaId || 'observacao'}
+                      placeholder={props.textareaPlaceholder}
+                      onChange={atualizarDados}
+                    />
                   </FormControl>
                 </Flex>
               ) : (

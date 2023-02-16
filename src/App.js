@@ -32,28 +32,25 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Home />} />
 
-          <Route path="/locacao" element={<LocacaoListar />} />
-          <Route path="/locacao/criar" element={<LocacaoCriar />} />
-          <Route path="/locacao/atualizar" element={<LocacaoAtualizar />} />
+          <Route path="/locacoes" element={<LocacaoListar />} />
+          <Route path="/locacao" element={<LocacaoCriar />} />
+          <Route path="/locacao/:id" element={<LocacaoAtualizar />} />
 
-          <Route path="/reuniao" element={<ReuniaoListar />} />
-          <Route path="/reuniao/criar" element={<ReuniaoCriar />} />
-          <Route path="/reuniao/atualizar" element={<ReuniaoAtualizar />} />
+          <Route path="/reunioes" element={<ReuniaoListar />} />
+          <Route path="/reuniao" element={<ReuniaoCriar />} />
+          <Route path="/reuniao/:id" element={<ReuniaoAtualizar />} />
 
-          <Route path="/categoria" element={<CategoriaListar />} />
-          <Route path="/categoria/criar" element={<CategoriaCriar />} />
-          <Route path="/categoria/atualizar" element={<CategoriaAtualizar />} />
+          <Route path="/categorias" element={<CategoriaListar />} />
+          <Route path="/categoria" element={<CategoriaCriar />} />
+          <Route path="/categoria/:id" element={<CategoriaAtualizar />} />
 
-          <Route path="/participante" element={<ParticipanteListar />} />
-          <Route path="/participante/criar" element={<ParticipanteCriar />} />
-          <Route
-            path="/participante/atualizar"
-            element={<ParticipanteAtualizar />}
-          />
+          <Route path="/participantes" element={<ParticipanteListar />} />
+          <Route path="/participante" element={<ParticipanteCriar />} />
+          <Route path="/participante/:id" element={<ParticipanteAtualizar />} />
 
-          <Route path="/plano" element={<PlanoListar />} />
-          <Route path="/plano/criar" element={<PlanoCriar />} />
-          <Route path="/plano/atualizar" element={<PlanoAtualizar />} />
+          <Route path="/planos" element={<PlanoListar />} />
+          <Route path="/plano" element={<PlanoCriar />} />
+          <Route path="/plano/:id" element={<PlanoAtualizar />} />
 
           <Route path="/*" element={<div>Página não encontrada</div>} />
         </Routes>

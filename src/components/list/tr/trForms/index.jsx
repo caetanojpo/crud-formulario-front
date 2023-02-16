@@ -13,24 +13,33 @@ import {
   useDisclosure,
 } from '@chakra-ui/react';
 import { Icon } from '@iconify/react';
-import { useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { useRef, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { Api } from '../../../../api/api';
 
 export default function TrForms(props) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const cancelRef = useRef();
   const colunas = Object.values(props.conteudo);
+  const colunaId = colunas[0];
+
+  const deletarRegistro = async () => {
+    await Api.deleteRequest(`${props.url}/${colunaId}`);
+
+    window.location.reload(true);
+  };
+
   return (
     <>
       <Tr>
-        {colunas.map((item) => (
-          <Td>{item}</Td>
+        {colunas.map((item, index) => (
+          <Td key={index}>{item}</Td>
         ))}
 
         <Td>
           <Flex justifyContent="flex-end">
             <Tooltip hasArrow label="Ver detalhes" bg="gray.300" color="black">
-              <Link to={props.caminhoDetalheRegistro}>
+              <Link to={`${props.url}/${colunaId}`}>
                 <Button mr="10px">
                   <Icon icon="ic:outline-remove-red-eye" />
                 </Button>
@@ -69,7 +78,7 @@ export default function TrForms(props) {
               <Button ref={cancelRef} onClick={onClose}>
                 Cancelar
               </Button>
-              <Button colorScheme="red" onClick={onClose} ml={3}>
+              <Button colorScheme="red" ml={3} onClick={deletarRegistro}>
                 Deletar
               </Button>
             </AlertDialogFooter>

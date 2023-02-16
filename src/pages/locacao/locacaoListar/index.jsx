@@ -1,17 +1,27 @@
+import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
+import { Api } from '../../../api/api';
 import TableFormulario from '../../../components/list';
+import Carregando from '../../../components/carregando';
 
 export default function LocacaoListar() {
   const cabecalho = ['ID', 'NOME', 'TELEFONE', 'ORGANIZAÇÃO', 'DATA', 'PLANO'];
-  const conteudo = [
-    {
-      id: '1',
-      nome: 'Rodrigo',
-      telefone: '18997470599',
-      organizacao: 'Fomenta',
-      data: '20/02/2023',
-      plano: 'Sala Podcast 8h',
-    },
-  ];
+
+  const url = useLocation();
+  const [conteudo, setConteudo] = useState('');
+
+  useEffect(() => {
+    if (!conteudo) {
+      Api.getRequest(url.pathname).then((response) => {
+        setConteudo(response.data);
+      });
+    }
+  });
+
+  if (!conteudo) {
+    return <Carregando />;
+  }
+
   return (
     <TableFormulario
       titulo="Locação"

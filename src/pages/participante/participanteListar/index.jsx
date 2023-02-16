@@ -1,22 +1,33 @@
+import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import TableFormulario from '../../../components/list';
+import { Api } from '../../../api/api';
+import Carregando from '../../../components/carregando';
 
 export default function ParticipanteListar() {
   const cabecalho = ['ID', 'NOME', 'EMAIL', 'CARGO'];
-  const conteudo = [
-    {
-      id: '1',
-      nome: 'Almir',
-      email: 'contato@fomentavale.com.br',
-      cargo: 'Gestor',
-    },
-  ];
+
+  const url = useLocation();
+  const [conteudo, setConteudo] = useState('');
+
+  useEffect(() => {
+    if (!conteudo) {
+      Api.getRequest(url.pathname).then((response) => {
+        setConteudo(response.data);
+      });
+    }
+  });
+
+  if (!conteudo) {
+    return <Carregando />;
+  }
+
   return (
     <TableFormulario
       titulo="Participantes"
       tableCabecalho={cabecalho}
       tableConteudo={conteudo}
-      caminhoNovoRegistro="/participante/criar"
-      caminhoDetalheRegistro="/participante/atualizar"
+      url="/participante"
       labelNovoRegistro="Adicionar um novo participante"
     />
   );
