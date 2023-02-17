@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Api } from '../../../api/api';
 import Carregando from '../../carregando';
-import Form from '../index';
-import FormReunioes from '../teste';
+import FormRL from '../formCriarRL';
 
 export default function FormReuniao(props) {
   const inputData = [
@@ -77,34 +76,12 @@ export default function FormReuniao(props) {
 
   return (
     <>
-      {/* <Form
+      <FormRL
         titulo="Nova Reunião"
         inputData={inputData}
         labelMulti="Selecione o(s) participante(s) da reunião: "
         multiData={multiData}
         multiSelect
-        select
-        selectData={selectData}
-        labelSelect="Selecione a categoria da reunião:"
-        idSelect="categoriaId"
-        textarea
-        textareaId="assunto"
-        textareaLabel="Qual foi o assunto da reunião?"
-        textareaPlaceholder="Digite o assunto da reunião..."
-        alterar={props.podeAlterar ? true : false}
-        desabilitar={props.desabilitar ? true : false}
-        confirmaAlteracao={props.confirmaAlteracao}
-        required
-        dadosRequisicao={props.dadosRequisicao}
-      /> */}
-
-      <FormReunioes
-        titulo="Nova Reunião"
-        inputData={inputData}
-        labelMulti="Selecione o(s) participante(s) da reunião: "
-        multiData={multiData}
-        multiSelect
-        select
         selectData={selectData}
         labelSelect="Selecione a categoria da reunião:"
         idSelect="categoriaId"

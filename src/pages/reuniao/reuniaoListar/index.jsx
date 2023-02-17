@@ -1,4 +1,3 @@
-/* eslint-disable no-param-reassign */
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Api } from '../../../api/api';
@@ -12,7 +11,6 @@ export default function ReuniaoListar() {
     'NOME',
     'DATA E HORÁRIO',
     'LOCAL REUNIÃO',
-    'PARTICIPANTES',
   ];
 
   const url = useLocation();
@@ -21,6 +19,12 @@ export default function ReuniaoListar() {
   useEffect(() => {
     if (!conteudo) {
       Api.getRequest(url.pathname).then((response) => {
+        response.data.map((item) => {
+          const { categoria } = item;
+          delete item.assunto;
+          delete item.duracao;
+          item.categoria = categoria.descricao;
+        });
         setConteudo(response.data);
       });
     }
@@ -35,8 +39,7 @@ export default function ReuniaoListar() {
       titulo="Reuniões"
       tableCabecalho={cabecalho}
       tableConteudo={conteudo}
-      caminhoNovoRegistro="/reuniao/criar"
-      caminhoDetalheRegistro="/reuniao/atualizar"
+      url="/reuniao"
       labelNovoRegistro="Adicionar uma nova reunião"
     />
   );

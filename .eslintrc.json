@@ -28,6 +28,7 @@
     "vars-on-top": "off",
     "array-callback-return": "off",
     "no-return-assign": "off",
-    "no-param-reassign": "off"
+    "no-param-reassign": "off",
+    "radix": "off"
   }
 }

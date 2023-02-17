@@ -13,6 +13,12 @@ export default function LocacaoListar() {
   useEffect(() => {
     if (!conteudo) {
       Api.getRequest(url.pathname).then((response) => {
+        response.data.map((item) => {
+          const { plano } = item;
+          delete item.plano;
+          delete item.observacao;
+          item.descricao = plano.descricao;
+        });
         setConteudo(response.data);
       });
     }
@@ -27,8 +33,7 @@ export default function LocacaoListar() {
       titulo="Locação"
       tableCabecalho={cabecalho}
       tableConteudo={conteudo}
-      caminhoNovoRegistro="/locacao/criar"
-      caminhoDetalheRegistro="/locacao/atualizar"
+      url="/locacao"
       labelNovoRegistro="Adicionar uma nova locação"
     />
   );
