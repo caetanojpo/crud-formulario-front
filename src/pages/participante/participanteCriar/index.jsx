@@ -6,11 +6,11 @@ import {
   Input,
   Flex,
 } from '@chakra-ui/react';
-import '../../../components/forms/index';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Api } from '../../../api/api';
 import ButtonForm from '../../../components/button';
+import BotaoVoltarListagem from '../../../components/botaoVoltarListagem';
 
 export default function ParticipanteCriar() {
   const navigate = useNavigate();
@@ -34,6 +34,7 @@ export default function ParticipanteCriar() {
 
   return (
     <>
+      <BotaoVoltarListagem url="/participantes" />
       <Flex width="full" align="center" justifyContent="center">
         <Flex
           padding="32px"
@@ -46,7 +47,7 @@ export default function ParticipanteCriar() {
           color="black"
           borderRadius="8px"
           borderColor="black"
-          margin="50px 0px"
+          margin="20px 0px"
         >
           <Box textAlign="center" padding="32px">
             <Heading fontSize="32px" fontFamily="gotham" fontWeight="600">

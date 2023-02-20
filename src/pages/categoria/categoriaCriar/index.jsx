@@ -5,6 +5,7 @@ const informacoes = {
   labelDescricao: 'Digite a descrição da categoria: ',
   placeholderDescricao: 'Educacional/Institucional...',
   placeholderObservacao: 'Digite aqui as informações extras sobre a categoria.',
+  enderecoListagem: '/categorias',
 };
 
 export default function CategoriaCriar() {

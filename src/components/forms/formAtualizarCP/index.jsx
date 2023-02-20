@@ -21,6 +21,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import ButtonForm from '../../button';
 import { Api } from '../../../api/api';
 import Carregando from '../../carregando';
+import BotaoVoltarListagem from '../../botaoVoltarListagem';
 
 export default function FormAtualizarCP(props) {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -76,6 +77,7 @@ export default function FormAtualizarCP(props) {
 
   return (
     <>
+      <BotaoVoltarListagem url={props.voltar} />
       <Flex width="full" align="center" justifyContent="center">
         <Flex
           padding="32px"
@@ -88,7 +90,7 @@ export default function FormAtualizarCP(props) {
           color="black"
           borderRadius="8px"
           borderColor="black"
-          margin="50px 0px"
+          margin="20px 0px"
         >
           <Box textAlign="center" padding="32px">
             <Heading fontSize="32px" fontFamily="gotham" fontWeight="600">

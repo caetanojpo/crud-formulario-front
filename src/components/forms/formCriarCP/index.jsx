@@ -12,6 +12,7 @@ import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Api } from '../../../api/api';
 import ButtonForm from '../../button';
+import BotaoVoltarListagem from '../../botaoVoltarListagem';
 
 export default function FormCriarCP(props) {
   const navigate = useNavigate();
@@ -31,11 +32,12 @@ export default function FormCriarCP(props) {
 
     await Api.postRequest(url.pathname, dados);
 
-    navigate('/categorias');
+    navigate(props.informacoes.enderecoListagem);
   };
 
   return (
     <>
+      <BotaoVoltarListagem url={props.informacoes.enderecoListagem} />
       <Flex width="full" align="center" justifyContent="center">
         <Flex
           padding="32px"
@@ -48,7 +50,7 @@ export default function FormCriarCP(props) {
           color="black"
           borderRadius="8px"
           borderColor="black"
-          margin="50px 0px"
+          margin="20px 0px"
         >
           <Box textAlign="center" padding="32px">
             <Heading fontSize="32px" fontFamily="gotham" fontWeight="600">

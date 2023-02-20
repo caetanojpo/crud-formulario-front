@@ -5,6 +5,7 @@ const informacoes = {
   labelDescricao: 'Digite a descrição do plano: ',
   placeholderDescricao: 'Educacional/Institucional...',
   placeholderObservacao: 'Digite aqui as informações extras sobre a categoria.',
+  enderecoListagem: '/planos',
 };
 
 export default function PlanoCriar() {
