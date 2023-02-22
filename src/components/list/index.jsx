@@ -74,7 +74,7 @@ export default function TableFormulario(props) {
             <Thead>
               <Tr>
                 {props.tableCabecalho.map((item, index) => {
-                  return <Th key={`TH${index}`}>{item}</Th>;
+                  return <Th key={index}>{item}</Th>;
                 })}
               </Tr>
             </Thead>
